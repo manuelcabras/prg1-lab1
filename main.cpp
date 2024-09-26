@@ -39,13 +39,13 @@ const double METER_IN_MILE = 0.000621371;
 const double METER_IN_FEET = 3.280838879;
 const double METER_IN_INCH = 39.3701;
 
-double to_miles(int *m) {
+double to_miles(const int *m) {
     return *m * METER_IN_MILE ;
 }
-double to_feet(int *m) {
+double to_feet(const int *m) {
     return METER_IN_FEET * *m;
 }
-double to_inches(int *m) {
+double to_inches(const int *m) {
     return METER_IN_INCH * *m;
 }
 
@@ -297,7 +297,7 @@ int main() {
     }
     */
 
-    // Ev. 4.01
+    // Ex. 4.01
     /*
     int i = 5;
     const int j = 10;
@@ -309,22 +309,88 @@ int main() {
     int* const ptr_i_2 = &i;
 
     #	Instruction	Correcte ? (oui/non)	Explication	i	j
-    *ptr_i = 15;	oui / on appelle la valeur à l'adresse contenue dans le pointeur et on la set à 15 / 15 / 10
-    int *ptr_j_1 = &j; 
-    ptr_j = ptr_i;
-    *ptr_i_1 = 25;
-    *ptr_i_2 = 30;
-    ptr_i_1 = &j;
-    ptr_i_2 = &j;
+    *ptr_i = 15;	    // oui / on appelle la valeur à l'adresse contenue dans le pointeur et on la set à 15 / 15 / 10
+    int *ptr_j_1 = &j;  // non car J est une const int, pas un int
+    ptr_j = ptr_i;      // oui car on peut changer le pointage d'un const int*
+    *ptr_i_1 = 25;      // non car const
+    *ptr_i_2 = 30;      // oui car const pointer vers non const value
+    ptr_i_1 = &j;       // oui car pointer réattribué
+    ptr_i_2 = &j;       // non car const pointer
 
     */
-    const double smth = 1.0;
-    const double *ptr_pi = &PI;
-    double const *ptr_pi2 = &PI;
-    const double* const ptr_pi3 = &PI;
-    ptr_pi = &smth;
-    ptr_pi2 = &smth;
-    ptr_pi3 = &smth;
+
+    // Ex. 4.02
+    /*int var1 = 1;
+    int var2 = 2;
+
+    const int cste = 3;
+
+    int* ptr1;
+    int* ptr2 = &var2;
+
+    ptr1 = &var1;
+    *ptr1 = 2;
+
+    bool is_same_ref = ptr1 == ptr2;
+    cout << is_same_ref ? "oui" : "non"<< endl;
+
+    bool is_same_val = *ptr1 == *ptr2;
+    cout << is_same_val ? "oui" : "non" << endl;
+
+    cout << &var1 << endl;
+
+    cout << ptr1 << endl;
+
+    cout << &ptr1 << endl;
+
+    //ptr1 = &cste;
+
+    const int* ptr3 = &cste;
+    */
+
+    // Ex. 4.03
+    /*
+    int var1 = 1;
+    int &ref1 = var1;
+
+    //int &ref2;
+
+    var1 = 2;
+    ref1 = 3;
+    cout << var1;
+    cout << ref1;
+    // à une référence à la variable var1
+    int* const ptr1 = &var1;
+    // à une référence qui ne peut pas modifier la valeur de la variable référencée
+    const int* const ptr2 = &var1;
+    */
+
+    // Ex. 5.01
+    /*int a = ((1 * 2) + ((3 / 4) * 2));
+
+    //bool b = ((a + (b < (c * d))) + e) or (f - g + (h == i)) //faux
+    //bool b = (((a + b) < ((c * d) + e)) or (((f - g) + h) == i))
+
+    //bool c = (a == (b < c))
+
+    //bool d = ((a < (b or c)) == ((d and e) > b)) // faux
+    //bool d = ((a < b) or ((c == d) and (e > b)))
+
+    //++++a
+    //(++(++a))
+
+    // (((+a) -(((-b) * (-c))) + (-(+d)))
+    // (((+a) - ((-b) * (-c))) + (-(+d)))
+
+    // ((((a * b) % c) + ((d % e) / f)) - g)
+    // ((((a * b) % c) + ((d % e) / f)) - g)
+
+    // ((+a (-b or c)) == ((d > e) < (f and g)))
+    // + a - b or c == d > e < f and g
+    // ((+a) - b) or (( c == ((d > e) < f)) and g))
+
+    // (((+ a) - b) or ((c == ((d > e) < f)) and g))
+    */
 
 
     return EXIT_SUCCESS;
