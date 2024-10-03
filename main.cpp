@@ -49,7 +49,9 @@ double to_inches(const int *m) {
     return METER_IN_INCH * *m;
 }
 
+
 int main() {
+
     // Hello world
     /*  const char* deco[2] = {"# # # # # # # # # #"," # # # # # # # # # "};
 
@@ -76,6 +78,8 @@ int main() {
       cout << " des tâches de manière plus performante et précise par rapport à un humain afin de nous améliorer le quoticien" << endl;
       return 0;
       */
+
+    // ####################### Introduction & Elements de base ######################
 
     // Ex. 01 - 04-02 - segfault
     /*int *p = nullptr;
@@ -392,6 +396,26 @@ int main() {
     // (((+ a) - b) or ((c == ((d > e) < f)) and g))
     */
 
+    // ####################### 03 - Structure de données ######################
+    // 01-01 : non car pour 100 la valeur varie
+    // 01-02 : b += a > 0 ? a : -2*a;      r = d == 0. ? 1e100 : n/d;         b = a > 0 ? b + 1 : a==0 ? 0 : b *2 ;
+    /* 01-03
+        if (a >= 1) { a =42} else { a*= a};
+        if (a ==2) { b = 32} else if(a <5) { b = 12} else { b = 23} ;
+        if(a < 0) {
+            if (b < 0) {
+                c = a
+            } else {
+                c = -a;
+        } else {
+            if(b <5) {
+                c = a+b;
+            else {
+                c= a-b
+            }
+        }
+    */
+    //
 
     return EXIT_SUCCESS;
 
